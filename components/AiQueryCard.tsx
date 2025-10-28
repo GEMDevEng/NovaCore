@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { getBusinessInsights } from '../services/geminiService';
+import { getBusinessInsights } from '../services/aiService';
 import { AiInsight } from '../types';
 import { SparklesIcon, StarIcon, CurrencyDollarIcon } from './icons';
 

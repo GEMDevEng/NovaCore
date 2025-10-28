@@ -11,8 +11,12 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
+        // Support both old and new environment variable names for backward compatibility
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        // New provider-agnostic configuration
+        'process.env.AI_PROVIDER': JSON.stringify(env.AI_PROVIDER || 'gemini'),
+        'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY || ''),
       },
       resolve: {
         alias: {
