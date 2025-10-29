@@ -1,0 +1,133 @@
+{
+  "name": "NovaCore",
+  "version": "1.0.0",
+  "description": "AI-Powered Business Optimization Platform with full-stack capabilities",
+  "author": "GEM Development",
+  "license": "MIT",
+  "type": "full-stack",
+  "deploymentType": "monorepo",
+  "projectStructure": {
+    "frontend": {
+      "type": "react",
+      "path": "./",
+      "buildCommand": "npm run build",
+      "startCommand": "npm run dev",
+      "outputDirectory": "dist",
+      "entryPoint": "index.html",
+      "buildTool": "vite"
+    },
+    "backend": {
+      "type": "express",
+      "path": "./backend",
+      "buildCommand": "npm install",
+      "startCommand": "npm start",
+      "port": 3001,
+      "runtime": "node",
+      "nodeVersion": "18+"
+    }
+  },
+  "features": {
+    "authentication": {
+      "enabled": true,
+      "methods": ["google-oauth", "email-password"],
+      "providers": ["Google OAuth", "Email/Password"]
+    },
+    "payments": {
+      "enabled": true,
+      "providers": ["PayPal", "Stripe", "Razorpay"]
+    },
+    "ai": {
+      "enabled": true,
+      "providers": ["Cohere"],
+      "capabilities": ["business-insights", "lead-qualification", "data-analysis"]
+    },
+    "database": {
+      "enabled": false,
+      "note": "Backend-ready for database integration"
+    }
+  },
+  "environmentVariables": {
+    "frontend": {
+      "VITE_API_URL": "Backend API URL (e.g., https://your-backend.youware.app)",
+      "COHERE_API_KEY": "Cohere API key for AI features"
+    },
+    "backend": {
+      "PORT": "3001",
+      "NODE_ENV": "production",
+      "COHERE_API_KEY": "Cohere API key",
+      "FRONTEND_URL": "Frontend URL for CORS",
+      "GOOGLE_CLIENT_ID": "Google OAuth client ID",
+      "GOOGLE_CLIENT_SECRET": "Google OAuth client secret",
+      "PAYPAL_CLIENT_ID": "PayPal client ID",
+      "STRIPE_SECRET_KEY": "Stripe secret key",
+      "RAZORPAY_KEY_ID": "Razorpay key ID",
+      "RAZORPAY_KEY_SECRET": "Razorpay key secret"
+    }
+  },
+  "dependencies": {
+    "frontend": {
+      "react": "^18.0.0",
+      "react-router-dom": "^6.0.0",
+      "vite": "^5.0.0",
+      "typescript": "^5.0.0"
+    },
+    "backend": {
+      "express": "^4.18.0",
+      "cohere-ai": "latest",
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.0"
+    }
+  },
+  "scripts": {
+    "frontend": {
+      "dev": "npm run dev",
+      "build": "npm run build",
+      "preview": "npm run preview"
+    },
+    "backend": {
+      "dev": "cd backend && npm run dev",
+      "start": "cd backend && npm start",
+      "build": "cd backend && npm install"
+    },
+    "all": {
+      "install": "npm install && cd backend && npm install",
+      "dev": "concurrently 'npm run dev' 'npm run backend:dev'",
+      "build": "npm run build && npm run backend:build"
+    }
+  },
+  "deployment": {
+    "platform": "youware",
+    "strategy": "monorepo",
+    "frontend": {
+      "deploymentType": "static",
+      "buildOutput": "dist"
+    },
+    "backend": {
+      "deploymentType": "serverless",
+      "handler": "api/index.js"
+    }
+  },
+  "documentation": {
+    "readme": "README.md",
+    "setup": "docs/YOUWARE_SETUP.md",
+    "api": "backend/API_DOCUMENTATION.md",
+    "deployment": "docs/YOUWARE_DEPLOYMENT.md"
+  },
+  "community": {
+    "repository": "https://github.com/GEMDevEng/NovaCore",
+    "issues": "https://github.com/GEMDevEng/NovaCore/issues",
+    "discussions": "https://github.com/GEMDevEng/NovaCore/discussions"
+  },
+  "tags": [
+    "ai",
+    "business-optimization",
+    "full-stack",
+    "react",
+    "express",
+    "dashboard",
+    "analytics",
+    "crm",
+    "erp"
+  ]
+}
+

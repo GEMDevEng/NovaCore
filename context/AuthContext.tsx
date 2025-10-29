@@ -21,10 +21,23 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_BASE_URL = (process.env.VITE_API_URL || 'https://backend-1og47r7nc-gem-devs-projects.vercel.app') + '/api/v1';
+// Get API URL from environment or use default
+const getApiUrl = () => {
+  // Try to get from environment variable first
+  if (process.env.VITE_API_URL) {
+    return process.env.VITE_API_URL + '/api/v1';
+  }
+  // Fallback to Vercel backend
+  return 'https://backend-1og47r7nc-gem-devs-projects.vercel.app/api/v1';
+};
 
-// TEMPORARY: Authentication bypass for testing
-const BYPASS_AUTH = false;
+const API_BASE_URL = getApiUrl();
+
+// TEMPORARY: Authentication bypass for YouWare deployment
+// Set to true to bypass authentication and use mock user
+// This allows the app to work when backend is not accessible
+const BYPASS_AUTH = !process.env.VITE_API_URL || process.env.VITE_API_URL === '';
+
 const MOCK_USER: User = {
   id: 'mock-user-001',
   email: 'demo@novacore.app',

@@ -26,6 +26,20 @@ NovaCore is built from first principles to eliminate operational friction and em
 - **Styling**: Tailwind CSS with Material Design 3
 - **Package Manager**: npm
 
+## 🚀 Deploy to YouWare
+
+Deploy NovaCore to YouWare in one click using the VS Code extension!
+
+**Quick Start:**
+1. Install [YouWare Extension](https://www.youware.com/plugin) in VS Code/Cursor
+2. Follow [YOUWARE_QUICK_START.md](YOUWARE_QUICK_START.md)
+3. Get a shareable URL instantly
+
+**Documentation:**
+- [YouWare Setup Guide](docs/YOUWARE_SETUP.md)
+- [YouWare Deployment Guide](docs/YOUWARE_DEPLOYMENT.md)
+- [Create Separate Fork](docs/YOUWARE_FORK_INSTRUCTIONS.md)
+
 ## Prerequisites
 
 - Node.js 18+
