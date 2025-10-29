@@ -20,6 +20,9 @@
       "src": "/(.*)",
       "dest": "api/index.js"
     }
-  ]
+  ],
+  "buildEnv": {
+    "COHERE_API_KEY": "@cohere_api_key"
+  }
 }
 

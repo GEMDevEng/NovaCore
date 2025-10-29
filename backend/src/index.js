@@ -6,8 +6,11 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-// Load environment variables
-dotenv.config({ path: '../.env.local' });
+// Load environment variables (only in local development, not in Vercel)
+// In Vercel, environment variables are set in the Dashboard and automatically available
+if (!process.env.VERCEL) {
+  dotenv.config({ path: '../.env.local' });
+}
 
 // Import routes
 import aiRoutes from './routes/ai.js';

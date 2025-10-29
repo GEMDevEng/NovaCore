@@ -23,13 +23,31 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const API_BASE_URL = (process.env.VITE_API_URL || 'https://backend-hlzualdvn-gem-devs-projects.vercel.app') + '/api/v1';
 
+// TEMPORARY: Authentication bypass for testing
+const BYPASS_AUTH = true;
+const MOCK_USER: User = {
+  id: 'mock-user-001',
+  email: 'demo@novacore.app',
+  name: 'Demo User',
+  subscription: 'premium',
+};
+const MOCK_TOKEN = 'mock-token-bypass-auth';
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(BYPASS_AUTH ? MOCK_USER : null);
+  const [token, setToken] = useState<string | null>(BYPASS_AUTH ? MOCK_TOKEN : null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load token from localStorage on mount
   useEffect(() => {
+    if (BYPASS_AUTH) {
+      // Skip authentication checks and use mock user
+      setUser(MOCK_USER);
+      setToken(MOCK_TOKEN);
+      setIsLoading(false);
+      return;
+    }
+
     const savedToken = localStorage.getItem('authToken');
     const savedUser = localStorage.getItem('authUser');
     if (savedToken && savedUser) {
@@ -41,6 +59,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string) => {
     try {
+      if (BYPASS_AUTH) {
+        // Bypass authentication - set mock user
+        setToken(MOCK_TOKEN);
+        setUser(MOCK_USER);
+        localStorage.setItem('authToken', MOCK_TOKEN);
+        localStorage.setItem('authUser', JSON.stringify(MOCK_USER));
+        localStorage.setItem('userId', MOCK_USER.id);
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -65,6 +93,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (email: string, password: string, name: string) => {
     try {
+      if (BYPASS_AUTH) {
+        // Bypass authentication - set mock user
+        setToken(MOCK_TOKEN);
+        setUser(MOCK_USER);
+        localStorage.setItem('authToken', MOCK_TOKEN);
+        localStorage.setItem('authUser', JSON.stringify(MOCK_USER));
+        localStorage.setItem('userId', MOCK_USER.id);
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -89,6 +127,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const loginWithGoogle = async (token: string, email: string, name: string) => {
     try {
+      if (BYPASS_AUTH) {
+        // Bypass authentication - set mock user
+        setToken(MOCK_TOKEN);
+        setUser(MOCK_USER);
+        localStorage.setItem('authToken', MOCK_TOKEN);
+        localStorage.setItem('authUser', JSON.stringify(MOCK_USER));
+        localStorage.setItem('userId', MOCK_USER.id);
+        return;
+      }
+
       const response = await fetch(`${API_BASE_URL}/auth/oauth`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

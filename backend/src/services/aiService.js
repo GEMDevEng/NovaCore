@@ -16,12 +16,21 @@ class AiService {
   initializeClient() {
     if (this.provider === 'cohere') {
       const apiKey = process.env.COHERE_API_KEY;
+
+      // Debug logging for environment variable loading
+      const isVercel = !!process.env.VERCEL;
+      const nodeEnv = process.env.NODE_ENV;
+      console.log(`[AiService] Environment: Vercel=${isVercel}, NODE_ENV=${nodeEnv}`);
+      console.log(`[AiService] COHERE_API_KEY present: ${!!apiKey}`);
+
       if (!apiKey) {
         console.warn('⚠️  COHERE_API_KEY not configured - AI service will not be available');
+        console.warn('   Please set COHERE_API_KEY in Vercel Dashboard environment variables');
         this.client = null;
         return;
       }
       try {
+        console.log('✅ Initializing Cohere client with API key');
         this.client = new Cohere({ token: apiKey });
       } catch (error) {
         console.error('Failed to initialize Cohere client:', error);
