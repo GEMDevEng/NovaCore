@@ -10,7 +10,7 @@ interface Report {
   date: string;
 }
 
-const API_BASE_URL = 'https://backend-iwxvrs4g6-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-egj2pfaqw-gem-devs-projects.vercel.app/api/v1';
 
 const Reports: React.FC = () => {
   const [reports, setReports] = useState<Report[]>([]);
