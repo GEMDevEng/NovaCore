@@ -1,21 +1,21 @@
-# Staging Deployment Guide - Railway
+# Staging Deployment Guide - Vercel
 
-**Version**: 1.0.0  
-**Date**: 2025-10-29  
-**Platform**: Railway  
+**Version**: 2.0.0
+**Date**: 2025-10-29
+**Platform**: Vercel
 **Environment**: Staging
 
 ---
 
 ## Overview
 
-This guide documents the deployment of the NovaCore backend to Railway's staging environment. Railway provides a free tier suitable for testing and staging deployments.
+This guide documents the deployment of the NovaCore backend to Vercel's serverless platform. Vercel provides a free tier suitable for testing and staging deployments with serverless functions. The Express.js backend is wrapped in a Vercel serverless function handler for seamless deployment.
 
 ---
 
 ## Prerequisites
 
-- Railway account (free at https://railway.app)
+- Vercel account (free at https://vercel.com)
 - GitHub account (for connecting repository)
 - Cohere API key (from `.env.local`)
 - Node.js 18+ (for local testing)
@@ -24,28 +24,38 @@ This guide documents the deployment of the NovaCore backend to Railway's staging
 
 ## Deployment Steps
 
-### Step 1: Create Railway Account
+### Step 1: Create Vercel Account
 
-1. Visit https://railway.app
-2. Click "Start Project"
+1. Visit https://vercel.com
+2. Click "Sign Up"
 3. Sign up with GitHub (recommended for easy integration)
-4. Authorize Railway to access your GitHub account
+4. Authorize Vercel to access your GitHub account
 
 ### Step 2: Create New Project
 
-1. Click "New Project" in Railway dashboard
-2. Select "Deploy from GitHub repo"
+1. In Vercel dashboard, click "Add New..." → "Project"
+2. Select "Import Git Repository"
 3. Search for and select `NovaCore` repository
-4. Click "Deploy"
+4. Click "Import"
 
-### Step 3: Configure Environment Variables
+### Step 3: Configure Project Settings
 
-Railway will automatically detect the Node.js project. Now configure environment variables:
+1. In the import dialog, configure:
+   - **Project Name**: `novacore-backend` (or your preferred name)
+   - **Root Directory**: `backend`
+   - **Framework Preset**: `Other` (since we're using Express.js)
+   - **Build Command**: `npm install`
+   - **Output Directory**: Leave empty (not needed for serverless)
 
-1. In Railway dashboard, go to your project
-2. Click on the "Backend" service
-3. Go to "Variables" tab
-4. Add the following environment variables:
+2. Click "Deploy"
+
+### Step 4: Configure Environment Variables
+
+After project creation, add environment variables:
+
+1. Go to your project settings in Vercel dashboard
+2. Click "Settings" → "Environment Variables"
+3. Add the following environment variables:
 
 ```
 COHERE_API_KEY=dyfJLrucN9sINeHUyWKhflGuoJPIltrLdYVZdA9u
@@ -53,31 +63,24 @@ NODE_ENV=staging
 FRONTEND_URL=http://localhost:3000
 ```
 
-**Important**: 
-- `PORT` is automatically assigned by Railway (no need to set)
+**Important**:
 - `NODE_ENV=staging` enables staging-specific logging
 - `FRONTEND_URL` can be updated later when frontend is deployed
-
-### Step 4: Configure Build Settings
-
-1. In Railway dashboard, go to "Settings" tab
-2. Set the following:
-   - **Root Directory**: `backend`
-   - **Start Command**: `npm start`
-   - **Build Command**: `npm install` (optional, Railway auto-detects)
+- Vercel automatically sets `VERCEL=1` environment variable
 
 ### Step 5: Deploy
 
-1. Railway automatically deploys when you push to GitHub
+1. Vercel automatically deploys when you push to GitHub
 2. Or manually trigger deployment:
-   - Click "Deploy" button in Railway dashboard
-   - Wait for build to complete (usually 2-3 minutes)
+   - Click "Deployments" tab
+   - Click "Redeploy" on the latest deployment
+   - Wait for build to complete (usually 1-2 minutes)
 
 ### Step 6: Get Staging URL
 
 1. After deployment completes, go to "Deployments" tab
 2. Click on the latest deployment
-3. Copy the public URL (format: `https://novacore-backend-staging.railway.app`)
+3. Copy the production URL (format: `https://novacore-backend-[random].vercel.app`)
 4. This is your **Staging Backend URL**
 
 ---
@@ -85,10 +88,10 @@ FRONTEND_URL=http://localhost:3000
 ## Staging Backend URL
 
 ```
-https://novacore-backend-staging.railway.app
+https://novacore-backend-[random].vercel.app
 ```
 
-**Note**: Replace with actual URL after deployment
+**Note**: Replace with actual URL after deployment. The URL is shown in Vercel dashboard under "Deployments".
 
 ---
 
@@ -194,7 +197,7 @@ curl https://novacore-backend-staging.railway.app/api/v1/leads
 
 ### Automatic Redeployment
 
-Railway automatically redeploys when you push changes to the main branch:
+Vercel automatically redeploys when you push changes to the main branch:
 
 ```bash
 # Make changes locally
@@ -202,23 +205,25 @@ git add .
 git commit -m "feat: Update backend feature"
 git push origin main
 
-# Railway automatically detects and deploys
-# Check deployment status in Railway dashboard
+# Vercel automatically detects and deploys
+# Check deployment status in Vercel dashboard
 ```
 
 ### Manual Redeployment
 
-1. Go to Railway dashboard
+1. Go to Vercel dashboard
 2. Select your project
-3. Click "Redeploy" button
-4. Wait for deployment to complete
+3. Go to "Deployments" tab
+4. Click "Redeploy" on the latest deployment
+5. Wait for deployment to complete
 
 ### Rollback to Previous Deployment
 
 1. Go to "Deployments" tab
 2. Find the previous working deployment
-3. Click "Rollback" button
-4. Confirm rollback
+3. Click the three-dot menu
+4. Select "Promote to Production"
+5. Confirm rollback
 
 ---
 
@@ -233,17 +238,17 @@ NODE_ENV=staging
 
 # Optional
 FRONTEND_URL=http://localhost:3000
-PORT=auto-assigned-by-railway
 ```
+
+**Note**: Vercel automatically sets `VERCEL=1` environment variable in production.
 
 ### Updating Environment Variables
 
-1. Go to Railway dashboard
+1. Go to Vercel dashboard
 2. Select your project
-3. Click on "Backend" service
-4. Go to "Variables" tab
-5. Edit or add variables
-6. Changes take effect on next deployment
+3. Go to "Settings" → "Environment Variables"
+4. Edit or add variables
+5. Changes take effect on next deployment (redeploy to apply immediately)
 
 ---
 
@@ -251,11 +256,11 @@ PORT=auto-assigned-by-railway
 
 ### View Logs
 
-1. Go to Railway dashboard
+1. Go to Vercel dashboard
 2. Select your project
-3. Click on "Backend" service
-4. Go to "Logs" tab
-5. View real-time logs
+3. Go to "Deployments" tab
+4. Click on the latest deployment
+5. Go to "Logs" tab to view real-time logs
 
 ### Common Log Messages
 
@@ -282,10 +287,11 @@ PORT=auto-assigned-by-railway
 **Problem**: Build fails during deployment
 
 **Solution**:
-1. Check logs in Railway dashboard
+1. Check logs in Vercel dashboard (Deployments → Latest → Logs)
 2. Verify `backend/package.json` exists
 3. Ensure Node.js version is 18+
 4. Check for syntax errors in code
+5. Verify `backend/api/index.js` exists and exports the app
 
 ### Health Check Fails
 
@@ -327,13 +333,15 @@ PORT=auto-assigned-by-railway
 - **AI Query**: 200-500ms (depends on Cohere API)
 - **Lead Operations**: <50ms
 - **Batch Queries**: 500-2000ms (depends on batch size)
+- **Cold Start**: 1-3 seconds (first request after deployment or inactivity)
 
 ### Scaling
 
-Railway automatically scales based on traffic:
-- Free tier: Limited resources
-- Paid tier: Scalable resources
-- Monitor usage in Railway dashboard
+Vercel automatically scales based on traffic:
+- Free tier: Limited concurrent executions and invocations
+- Serverless functions: Auto-scale based on demand
+- Monitor usage in Vercel dashboard
+- Note: Free tier has limitations on function invocations per month
 
 ---
 
@@ -391,8 +399,9 @@ Railway automatically scales based on traffic:
 
 ## Useful Links
 
-- **Railway Dashboard**: https://railway.app/dashboard
-- **Railway Documentation**: https://docs.railway.app
+- **Vercel Dashboard**: https://vercel.com/dashboard
+- **Vercel Documentation**: https://vercel.com/docs
+- **Vercel Serverless Functions**: https://vercel.com/docs/functions/serverless-functions
 - **Cohere API Status**: https://status.cohere.com
 - **Backend API Documentation**: `backend/API_DOCUMENTATION.md`
 
@@ -408,7 +417,8 @@ For issues or questions:
 
 ---
 
-**Last Updated**: 2025-10-29  
-**Status**: Ready for Staging Deployment
+**Last Updated**: 2025-10-29
+**Status**: Ready for Vercel Staging Deployment
+**Platform**: Vercel Serverless Functions
 
 

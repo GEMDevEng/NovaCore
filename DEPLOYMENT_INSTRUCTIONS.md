@@ -1,8 +1,8 @@
-# Railway Staging Deployment - Step-by-Step Instructions
+# Vercel Staging Deployment - Step-by-Step Instructions
 
-**Date**: 2025-10-29  
-**Status**: Ready to Deploy  
-**Platform**: Railway  
+**Date**: 2025-10-29
+**Status**: Ready to Deploy
+**Platform**: Vercel
 **Estimated Time**: 10-15 minutes
 
 ---
@@ -10,25 +10,25 @@
 ## Prerequisites
 
 Before starting, ensure you have:
-- [ ] Railway account (free at https://railway.app)
+- [ ] Vercel account (free at https://vercel.com)
 - [ ] GitHub account with access to NovaCore repository
 - [ ] Cohere API key: `dyfJLrucN9sINeHUyWKhflGuoJPIltrLdYVZdA9u`
 - [ ] Internet connection
 
 ---
 
-## Step 1: Create Railway Account (If Needed)
+## Step 1: Create Vercel Account (If Needed)
 
-### 1.1 Visit Railway
+### 1.1 Visit Vercel
 ```
-Go to https://railway.app
+Go to https://vercel.com
 ```
 
 ### 1.2 Sign Up
 ```
-Click "Start Project"
-Select "Sign up with GitHub"
-Authorize Railway to access your GitHub account
+Click "Sign Up"
+Select "Continue with GitHub"
+Authorize Vercel to access your GitHub account
 ```
 
 ### 1.3 Verify Email
@@ -43,13 +43,13 @@ Click link to verify account
 
 ### 2.1 Go to Dashboard
 ```
-After signing in, you'll see the Railway dashboard
-Click "New Project" button
+After signing in, you'll see the Vercel dashboard
+Click "Add New..." → "Project"
 ```
 
 ### 2.2 Select Deployment Method
 ```
-Click "Deploy from GitHub repo"
+Click "Import Git Repository"
 ```
 
 ### 2.3 Search for Repository
@@ -58,16 +58,18 @@ Search for "NovaCore" in the search box
 Click on "GEMDevEng/NovaCore" repository
 ```
 
-### 2.4 Authorize Railway
+### 2.4 Authorize Vercel
 ```
-If prompted, authorize Railway to access your repository
+If prompted, authorize Vercel to access your repository
 Click "Authorize"
 ```
 
-### 2.5 Select Branch
+### 2.5 Configure Import Settings
 ```
-Select "main" branch
-Click "Deploy"
+Project Name: novacore-backend
+Root Directory: backend
+Framework Preset: Other
+Click "Import"
 ```
 
 ---
@@ -76,43 +78,43 @@ Click "Deploy"
 
 ### 3.1 Wait for Initial Detection
 ```
-Railway will automatically detect Node.js project
+Vercel will automatically detect Node.js project
 Wait for detection to complete (usually 30 seconds)
 ```
 
-### 3.2 Set Root Directory
+### 3.2 Verify Root Directory
 ```
-In the service settings, set:
-Root Directory: backend
+Root Directory should be: backend
+This was set during import
 ```
 
-### 3.3 Verify Start Command
+### 3.3 Verify Build Command
 ```
-Start Command should be: npm start
-If not set, add it manually
+Build Command should be: npm install
+Vercel will auto-detect from package.json
 ```
 
 ### 3.4 Verify Node Version
 ```
 Node.js version should be 18+
-Railway will auto-detect from package.json
+Vercel will auto-detect from package.json
 ```
 
 ---
 
 ## Step 4: Set Environment Variables
 
-### 4.1 Go to Variables Tab
+### 4.1 Go to Environment Variables
 ```
-In Railway dashboard:
+In Vercel dashboard:
 1. Click on your project
-2. Click on "Backend" service
-3. Go to "Variables" tab
+2. Go to "Settings" tab
+3. Click "Environment Variables"
 ```
 
 ### 4.2 Add Environment Variables
 ```
-Click "Add Variable" button
+Click "Add New" button
 Add the following variables:
 
 Variable 1:
@@ -130,8 +132,8 @@ Variable 3:
 
 ### 4.3 Verify Variables
 ```
-All three variables should be visible in the Variables tab
-Click "Save" if prompted
+All three variables should be visible in the Environment Variables list
+They will be applied to the next deployment
 ```
 
 ---
@@ -141,11 +143,12 @@ Click "Save" if prompted
 ### 5.1 Trigger Deployment
 ```
 Option A (Automatic):
-- Railway automatically deploys when you push to GitHub
+- Vercel automatically deploys when you push to GitHub
 - Changes are already pushed, so deployment should start
 
 Option B (Manual):
-- Click "Deploy" button in Railway dashboard
+- Go to "Deployments" tab
+- Click "Redeploy" on the latest deployment
 - Wait for deployment to start
 ```
 
@@ -161,7 +164,7 @@ You should see:
 
 ### 5.3 Wait for Completion
 ```
-Deployment typically takes 2-3 minutes
+Deployment typically takes 1-2 minutes
 You'll see a green checkmark when complete
 ```
 
@@ -171,17 +174,17 @@ You'll see a green checkmark when complete
 
 ### 6.1 Find Public URL
 ```
-In Railway dashboard:
+In Vercel dashboard:
 1. Go to "Deployments" tab
 2. Click on the latest deployment
-3. Look for "Public URL" or "Domain"
+3. Look for the production URL at the top
 4. Copy the URL
 ```
 
 ### 6.2 Save Staging URL
 ```
 Example format:
-https://novacore-backend-staging.railway.app
+https://novacore-backend-[random].vercel.app
 
 Save this URL for testing
 ```
@@ -306,18 +309,20 @@ curl https://[STAGING_URL]/api/v1/leads
 
 ### 8.1 Check Deployment Logs
 ```
-In Railway dashboard:
-1. Go to "Logs" tab
-2. Look for startup messages
-3. Verify no error messages
+In Vercel dashboard:
+1. Go to "Deployments" tab
+2. Click on the latest deployment
+3. Go to "Logs" tab
+4. Look for startup messages
+5. Verify no error messages
 ```
 
 ### 8.2 Expected Log Messages
 ```
-✅ NovaCore Backend running on http://localhost:3001
-📚 API Documentation: http://localhost:3001/api/v1/health
-🔌 AI Endpoints: http://localhost:3001/api/v1/ai
-👥 Leads Endpoints: http://localhost:3001/api/v1/leads
+✅ NovaCore Backend running on Vercel serverless environment
+📚 API Documentation: /api/v1/health
+🔌 AI Endpoints: /api/v1/ai
+👥 Leads Endpoints: /api/v1/leads
 ```
 
 ### 8.3 Check for Errors
@@ -325,8 +330,9 @@ In Railway dashboard:
 If you see error messages:
 1. Check environment variables are set correctly
 2. Verify Cohere API key is valid
-3. Check logs for detailed error message
-4. See troubleshooting section below
+3. Verify backend/api/index.js exists
+4. Check logs for detailed error message
+5. See troubleshooting section below
 ```
 
 ---
@@ -336,24 +342,25 @@ If you see error messages:
 ### Issue: Deployment Failed
 
 **Solution**:
-1. Check logs in Railway dashboard
+1. Check logs in Vercel dashboard (Deployments → Latest → Logs)
 2. Verify `backend/package.json` exists
-3. Ensure Node.js version is 18+
-4. Check for syntax errors in code
-5. Try redeploying
+3. Verify `backend/api/index.js` exists
+4. Ensure Node.js version is 18+
+5. Check for syntax errors in code
+6. Try redeploying
 
 ### Issue: Health Check Returns Error
 
 **Solution**:
 1. Verify backend is running (check logs)
-2. Verify environment variables are set
+2. Verify environment variables are set in Vercel dashboard
 3. Check Cohere API key is valid
-4. Wait 30 seconds and try again
+4. Wait 30 seconds and try again (cold start)
 
 ### Issue: AI Query Returns Error
 
 **Solution**:
-1. Verify `COHERE_API_KEY` is set correctly
+1. Verify `COHERE_API_KEY` is set correctly in Vercel
 2. Check Cohere API status at https://status.cohere.com
 3. Verify prompt is valid JSON
 4. Check logs for detailed error message
@@ -361,10 +368,11 @@ If you see error messages:
 ### Issue: Cannot Access Staging URL
 
 **Solution**:
-1. Verify URL is correct
+1. Verify URL is correct (from Vercel dashboard)
 2. Check if deployment is complete
 3. Wait 1-2 minutes for DNS propagation
 4. Try accessing health endpoint
+5. Check for cold start delays (first request may take 1-3 seconds)
 
 ---
 
@@ -429,15 +437,17 @@ If deployment has issues:
 
 ## Support Resources
 
-- **Railway Documentation**: https://docs.railway.app
+- **Vercel Documentation**: https://vercel.com/docs
+- **Vercel Serverless Functions**: https://vercel.com/docs/functions/serverless-functions
 - **Cohere API Status**: https://status.cohere.com
 - **Backend API Documentation**: `backend/API_DOCUMENTATION.md`
 - **Staging Deployment Guide**: `docs/STAGING_DEPLOYMENT.md`
 
 ---
 
-**Status**: Ready to Deploy  
-**Estimated Time**: 10-15 minutes  
+**Status**: Ready to Deploy
+**Estimated Time**: 10-15 minutes
 **Difficulty**: Easy
+**Platform**: Vercel Serverless Functions
 
 
