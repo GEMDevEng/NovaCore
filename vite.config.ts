@@ -18,6 +18,8 @@ export default defineConfig(({ mode }) => {
         'process.env.AI_PROVIDER': JSON.stringify(env.AI_PROVIDER || 'gemini'),
         'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY || ''),
         'process.env.COHERE_API_KEY': JSON.stringify(env.COHERE_API_KEY || ''),
+        // Backend API URL configuration
+        'process.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || 'http://localhost:3001'),
       },
       resolve: {
         alias: {

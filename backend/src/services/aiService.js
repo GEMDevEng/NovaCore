@@ -17,13 +17,16 @@ class AiService {
     if (this.provider === 'cohere') {
       const apiKey = process.env.COHERE_API_KEY;
       if (!apiKey) {
-        throw new ApiError(
-          'COHERE_API_KEY not configured',
-          500,
-          'MISSING_API_KEY'
-        );
+        console.warn('⚠️  COHERE_API_KEY not configured - AI service will not be available');
+        this.client = null;
+        return;
       }
-      this.client = new Cohere({ token: apiKey });
+      try {
+        this.client = new Cohere({ token: apiKey });
+      } catch (error) {
+        console.error('Failed to initialize Cohere client:', error);
+        this.client = null;
+      }
     }
   }
 
@@ -33,6 +36,14 @@ class AiService {
    * @returns {Promise<Object>} - Business insights with rating, forecast, and summary
    */
   async getBusinessInsights(prompt) {
+    if (!this.client) {
+      throw new ApiError(
+        'AI service not available - COHERE_API_KEY not configured',
+        503,
+        'AI_SERVICE_UNAVAILABLE'
+      );
+    }
+
     if (!prompt || typeof prompt !== 'string') {
       throw new ApiError(
         'Prompt must be a non-empty string',

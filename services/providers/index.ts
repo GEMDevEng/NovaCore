@@ -8,21 +8,23 @@
 import { IAiProvider, ProviderConfig } from './types';
 import { GeminiAdapter } from './geminiAdapter';
 import { CohereAdapter } from './cohereAdapter';
+import { BackendAdapter } from './backendAdapter';
 
 // Singleton instance of the current provider
 let currentProvider: IAiProvider | null = null;
 
 /**
  * Get the active AI provider
- * 
+ *
  * Uses the AI_PROVIDER environment variable to determine which provider to use.
  * Defaults to 'gemini' for backward compatibility.
- * 
+ *
  * Supported providers:
  * - 'gemini': Google Gemini API (default)
  * - 'cohere': Cohere API (Phase 3)
+ * - 'backend': Backend API (recommended for production)
  * - 'groq': Groq API (future)
- * 
+ *
  * @returns IAiProvider - The configured AI provider instance
  * @throws Error if the provider is not supported or not configured
  */
@@ -43,12 +45,16 @@ export function getProvider(): IAiProvider {
         currentProvider = new CohereAdapter();
         break;
 
+      case 'backend':
+        currentProvider = new BackendAdapter();
+        break;
+
       case 'groq':
         // Groq provider will be implemented in future phases
-        throw new Error('Groq provider not yet implemented. Use AI_PROVIDER=gemini, cohere, or leave unset.');
+        throw new Error('Groq provider not yet implemented. Use AI_PROVIDER=gemini, cohere, backend, or leave unset.');
 
       default:
-        throw new Error(`Unknown AI provider: ${providerName}. Supported providers: gemini, cohere`);
+        throw new Error(`Unknown AI provider: ${providerName}. Supported providers: gemini, cohere, backend`);
     }
 
     console.log(`AI Provider initialized: ${providerName}`);
@@ -80,8 +86,8 @@ export function resetProvider(): void {
 
 /**
  * Create a provider instance with custom configuration
- * 
- * @param providerName - The name of the provider ('gemini', 'groq', etc.)
+ *
+ * @param providerName - The name of the provider ('gemini', 'cohere', 'backend', etc.)
  * @param config - Optional configuration for the provider
  * @returns IAiProvider - The configured provider instance
  * @throws Error if the provider is not supported
@@ -95,6 +101,9 @@ export function createProvider(providerName: string, config?: ProviderConfig): I
 
     case 'cohere':
       return new CohereAdapter(config);
+
+    case 'backend':
+      return new BackendAdapter(config);
 
     case 'groq':
       throw new Error('Groq provider not yet implemented.');

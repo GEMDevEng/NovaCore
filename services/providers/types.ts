@@ -39,5 +39,6 @@ export interface ProviderConfig {
   apiKey?: string;
   model?: string;
   timeout?: number;
+  apiUrl?: string;  // For backend adapter
 }
 

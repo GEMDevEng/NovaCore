@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "env_staging": {
+    "NODE_ENV": "production",
+    "AI_PROVIDER": "backend",
+    "VITE_API_URL": "https://backend-kjjvcfoin-gem-devs-projects.vercel.app"
+  },
+  "env_production": {
+    "NODE_ENV": "production",
+    "AI_PROVIDER": "backend",
+    "VITE_API_URL": "https://backend-kjjvcfoin-gem-devs-projects.vercel.app"
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "status": 404
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
+
