@@ -21,10 +21,10 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_BASE_URL = (process.env.VITE_API_URL || 'https://backend-hlzualdvn-gem-devs-projects.vercel.app') + '/api/v1';
+const API_BASE_URL = (process.env.VITE_API_URL || 'https://backend-1og47r7nc-gem-devs-projects.vercel.app') + '/api/v1';
 
 // TEMPORARY: Authentication bypass for testing
-const BYPASS_AUTH = true;
+const BYPASS_AUTH = false;
 const MOCK_USER: User = {
   id: 'mock-user-001',
   email: 'demo@novacore.app',
