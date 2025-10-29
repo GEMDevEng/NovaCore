@@ -73,10 +73,10 @@ app.use('/api/v1/calendar', calendarRoutes);
 app.get('/', (req, res) => {
   res.json({
     name: 'NovaCore Backend API',
-    version: '1.0.2',
+    version: '1.0.3',
     status: 'running',
     timestamp: new Date().toISOString(),
-    commit: '36adc40',
+    commit: '0ca4590',
     endpoints: {
       health: '/api/v1/health',
       ai: '/api/v1/ai',
