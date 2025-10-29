@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { AnalyticsIcon, CalendarIcon, ContactsIcon, DashboardIcon, ReportsIcon, RocketLaunchIcon } from './icons';
 
 const navItems = [
-  { name: 'Dashboard', icon: <DashboardIcon />, active: true },
-  { name: 'Analytics', icon: <AnalyticsIcon />, active: false },
-  { name: 'Reports', icon: <ReportsIcon />, active: false },
-  { name: 'Calendar', icon: <CalendarIcon />, active: false },
-  { name: 'Contacts', icon: <ContactsIcon />, active: false },
+  { name: 'Dashboard', icon: <DashboardIcon />, path: '/' },
+  { name: 'Analytics', icon: <AnalyticsIcon />, path: '/analytics' },
+  { name: 'Reports', icon: <ReportsIcon />, path: '/reports' },
+  { name: 'Calendar', icon: <CalendarIcon />, path: '/calendar' },
+  { name: 'Contacts', icon: <ContactsIcon />, path: '/contacts' },
 ];
 
 const Sidebar: React.FC = () => {
+  const location = useLocation();
+
   return (
     <aside className="bg-nova-card dark:bg-nova-card-dark text-nova-text-primary dark:text-nova-text-primary-dark w-64 min-h-screen p-4 shadow-lg hidden lg:flex flex-col">
       <div className="flex items-center mb-10">
@@ -22,19 +25,22 @@ const Sidebar: React.FC = () => {
       </div>
       <nav className="flex-grow">
         <ul>
-          {navItems.map((item) => (
-            <li key={item.name} className="mb-2">
-              <a href="#" className={`flex items-center p-3 rounded-lg transition-colors duration-200 relative ${
-                  item.active 
-                    ? 'bg-nova-primary/10 text-nova-primary' 
-                    : 'text-nova-text-secondary dark:text-nova-text-secondary-dark hover:bg-nova-bg-light dark:hover:bg-slate-700 hover:text-nova-primary'
-                }`}>
-                {item.active && <span className="absolute left-0 top-2 bottom-2 w-1 bg-nova-primary rounded-r-full"></span>}
-                {item.icon}
-                <span className="ml-4 font-medium">{item.name}</span>
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <li key={item.name} className="mb-2">
+                <Link to={item.path} className={`flex items-center p-3 rounded-lg transition-colors duration-200 relative ${
+                    isActive
+                      ? 'bg-nova-primary/10 text-nova-primary'
+                      : 'text-nova-text-secondary dark:text-nova-text-secondary-dark hover:bg-nova-bg-light dark:hover:bg-slate-700 hover:text-nova-primary'
+                  }`}>
+                  {isActive && <span className="absolute left-0 top-2 bottom-2 w-1 bg-nova-primary rounded-r-full"></span>}
+                  {item.icon}
+                  <span className="ml-4 font-medium">{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
       <div className="mt-auto p-5 bg-gradient-to-br from-nova-primary to-nova-secondary dark:from-indigo-500 dark:to-purple-600 rounded-lg text-white text-center relative overflow-hidden">
