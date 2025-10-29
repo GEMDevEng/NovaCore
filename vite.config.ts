@@ -12,6 +12,20 @@ export default defineConfig(({ mode }) => {
       build: {
         outDir: 'dist',
         sourcemap: false,
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              // Vendor libraries - core React dependencies
+              'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+              // Chart and visualization libraries - lazy loaded on Dashboard
+              'vendor-charts': ['recharts'],
+              // AI and API libraries - large dependencies (Cohere, Google GenAI, AWS SDK)
+              // These are loaded on-demand and acceptable to be >500kB
+              'vendor-ai': ['cohere-ai', '@google/genai'],
+            },
+          },
+        },
       },
       plugins: [react()],
       define: {

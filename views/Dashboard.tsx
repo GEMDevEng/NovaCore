@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import StatCard from '../components/StatCard';
-import RevenueChart from '../components/RevenueChart';
 import AiQueryCard from '../components/AiQueryCard';
 import RecentActivity from '../components/RecentActivity';
 import { StatCardData, RecentActivityItem } from '../types';
 import { ProjectsIcon, OnGoingIcon, CompleteIcon, CurrencyDollarIcon, UserPlusIcon, DocumentCheckIcon, CreditCardIcon } from '../components/icons';
+
+// Lazy load RevenueChart to defer recharts library loading
+const RevenueChart = React.lazy(() => import('../components/RevenueChart'));
+
+// Loading fallback for chart
+const ChartLoadingFallback: React.FC = () => (
+  <div className="bg-nova-card dark:bg-nova-card-dark p-6 rounded-xl shadow-sm col-span-2 h-96 flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-nova-primary"></div>
+  </div>
+);
 
 const statCardsData: StatCardData[] = [
   {
@@ -76,10 +85,12 @@ const Dashboard: React.FC = () => {
           <StatCard key={index} {...card} />
         ))}
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 flex flex-col gap-6">
-            <RevenueChart />
+            <Suspense fallback={<ChartLoadingFallback />}>
+              <RevenueChart />
+            </Suspense>
             <AiQueryCard />
         </div>
         <div className="lg:col-span-1">
