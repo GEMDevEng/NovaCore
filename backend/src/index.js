@@ -38,6 +38,8 @@ const corsOptions = {
       'http://localhost:3001',
       'https://novacore-frontend-seven.vercel.app',
       'https://novacore-frontend-dai0ahnbf-gem-devs-projects.vercel.app',
+      'https://novacore-frontend-nja6wepwl-gem-devs-projects.vercel.app',
+      'https://novacore-frontend-mm8iom1p7-gem-devs-projects.vercel.app',
       process.env.FRONTEND_URL,
     ].filter(Boolean);
 
