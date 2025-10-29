@@ -7,6 +7,7 @@
 
 import { IAiProvider, ProviderConfig } from './types';
 import { GeminiAdapter } from './geminiAdapter';
+import { CohereAdapter } from './cohereAdapter';
 
 // Singleton instance of the current provider
 let currentProvider: IAiProvider | null = null;
@@ -19,7 +20,8 @@ let currentProvider: IAiProvider | null = null;
  * 
  * Supported providers:
  * - 'gemini': Google Gemini API (default)
- * - 'groq': Groq API (coming in Phase 3)
+ * - 'cohere': Cohere API (Phase 3)
+ * - 'groq': Groq API (future)
  * 
  * @returns IAiProvider - The configured AI provider instance
  * @throws Error if the provider is not supported or not configured
@@ -36,13 +38,17 @@ export function getProvider(): IAiProvider {
       case 'gemini':
         currentProvider = new GeminiAdapter();
         break;
-      
+
+      case 'cohere':
+        currentProvider = new CohereAdapter();
+        break;
+
       case 'groq':
-        // Groq provider will be implemented in Phase 3
-        throw new Error('Groq provider not yet implemented. Use AI_PROVIDER=gemini or leave unset.');
-      
+        // Groq provider will be implemented in future phases
+        throw new Error('Groq provider not yet implemented. Use AI_PROVIDER=gemini, cohere, or leave unset.');
+
       default:
-        throw new Error(`Unknown AI provider: ${providerName}. Supported providers: gemini, groq`);
+        throw new Error(`Unknown AI provider: ${providerName}. Supported providers: gemini, cohere`);
     }
 
     console.log(`AI Provider initialized: ${providerName}`);
@@ -86,10 +92,13 @@ export function createProvider(providerName: string, config?: ProviderConfig): I
   switch (name) {
     case 'gemini':
       return new GeminiAdapter(config);
-    
+
+    case 'cohere':
+      return new CohereAdapter(config);
+
     case 'groq':
       throw new Error('Groq provider not yet implemented.');
-    
+
     default:
       throw new Error(`Unknown AI provider: ${name}`);
   }

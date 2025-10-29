@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
         // New provider-agnostic configuration
         'process.env.AI_PROVIDER': JSON.stringify(env.AI_PROVIDER || 'gemini'),
         'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY || ''),
+        'process.env.COHERE_API_KEY': JSON.stringify(env.COHERE_API_KEY || ''),
       },
       resolve: {
         alias: {
