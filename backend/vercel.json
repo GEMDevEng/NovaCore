@@ -1,9 +1,16 @@
 {
   "version": 2,
   "buildCommand": "npm ci",
+  "outputDirectory": null,
   "env": {
     "NODE_ENV": "production"
   },
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "functions": {
     "api/index.js": {
       "memory": 1024,
