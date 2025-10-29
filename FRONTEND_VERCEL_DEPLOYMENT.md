@@ -9,7 +9,7 @@
 
 - Vercel account (free at https://vercel.com)
 - GitHub account with access to NovaCore repository
-- Backend deployed at: https://backend-kjjvcfoin-gem-devs-projects.vercel.app
+- Backend deployed at: https://backend-2xzzobsd9-gem-devs-projects.vercel.app
 
 ## Deployment Steps
 
@@ -51,7 +51,7 @@ In Vercel dashboard, go to Settings → Environment Variables and add:
 
 ```
 AI_PROVIDER=backend
-VITE_API_URL=https://backend-kjjvcfoin-gem-devs-projects.vercel.app
+VITE_API_URL=https://backend-2xzzobsd9-gem-devs-projects.vercel.app
 COHERE_API_KEY=dyfJLrucN9sINeHUyWKhflGuoJPIltrLdYVZdA9u
 ```
 
