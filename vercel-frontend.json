@@ -8,12 +8,12 @@
   "env_staging": {
     "NODE_ENV": "production",
     "AI_PROVIDER": "backend",
-    "VITE_API_URL": "https://backend-9xl0fyi89-gem-devs-projects.vercel.app"
+    "VITE_API_URL": "https://backend-hlzualdvn-gem-devs-projects.vercel.app"
   },
   "env_production": {
     "NODE_ENV": "production",
     "AI_PROVIDER": "backend",
-    "VITE_API_URL": "https://backend-9xl0fyi89-gem-devs-projects.vercel.app"
+    "VITE_API_URL": "https://backend-hlzualdvn-gem-devs-projects.vercel.app"
   },
   "routes": [
     {
