@@ -43,6 +43,7 @@ const corsOptions = {
       'https://novacore-frontend-nja6wepwl-gem-devs-projects.vercel.app',
       'https://novacore-frontend-mm8iom1p7-gem-devs-projects.vercel.app',
       'https://novacore-frontend-5v8omroam-gem-devs-projects.vercel.app',
+      'https://novacore-frontend-q81lobvox-gem-devs-projects.vercel.app',
       process.env.FRONTEND_URL,
     ].filter(Boolean);
 
