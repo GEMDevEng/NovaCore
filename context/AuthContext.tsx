@@ -21,7 +21,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_BASE_URL = 'https://backend-egj2pfaqw-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-pti7tsb3k-gem-devs-projects.vercel.app/api/v1';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

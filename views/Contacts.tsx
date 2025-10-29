@@ -11,7 +11,7 @@ interface Contact {
   createdAt: string;
 }
 
-const API_BASE_URL = 'https://backend-egj2pfaqw-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-pti7tsb3k-gem-devs-projects.vercel.app/api/v1';
 
 const Contacts: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);

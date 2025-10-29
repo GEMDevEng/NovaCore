@@ -9,7 +9,7 @@ interface CalendarEvent {
   type: 'meeting' | 'call' | 'task' | 'deadline';
 }
 
-const API_BASE_URL = 'https://backend-egj2pfaqw-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-pti7tsb3k-gem-devs-projects.vercel.app/api/v1';
 
 const Calendar: React.FC = () => {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
