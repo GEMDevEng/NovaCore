@@ -13,7 +13,7 @@ interface PaymentProvider {
   icon: string;
 }
 
-const API_BASE_URL = 'https://backend-d4gu4y8ho-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-9xl0fyi89-gem-devs-projects.vercel.app/api/v1';
 
 const PAYMENT_PROVIDERS: PaymentProvider[] = [
   { id: 'paypal', name: 'PayPal', icon: '🅿️' },
