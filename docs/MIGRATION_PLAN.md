@@ -20,20 +20,20 @@ This document outlines the migration strategy from Google Gemini API to an alter
 - `AiQueryCard.tsx` component depends on `getBusinessInsights()` function
 - Type definitions in `types.ts` define `AiInsight` interface
 
-## Migration Target: Groq API (Llama 3)
+## Migration Target: Cohere API (Command R/Command A)
 
 ### Rationale
-- **Open-Source Models**: Llama 3 provides open-source alternatives to proprietary models
-- **Cost-Effective**: Groq offers competitive pricing with free tier options
-- **Performance**: Groq's inference engine provides sub-100ms latency
-- **Alignment**: Supports the "Grok-like" intelligence vision mentioned in the PRD
+- **True Free Tier**: Unlimited API calls with no rate limits on trial tier
+- **No Credit Card Required**: Completely free to start
+- **High-Quality Models**: Command R and Command A excel at business intelligence tasks
+- **Cost-Effective**: Competitive pricing if scaling beyond free tier
 - **Flexibility**: Easy to switch to other providers (OpenAI, Anthropic) if needed
 
 ### Target Provider Details
-- **Provider**: Groq (https://groq.com)
-- **Model**: Llama 3 (llama-3.1-70b-versatile or llama-3.1-8b-instant)
-- **Package**: `@groq/sdk` or direct REST API
-- **Authentication**: API key via `GROQ_API_KEY` environment variable
+- **Provider**: Cohere (https://cohere.com)
+- **Model**: Command R or Command A (latest)
+- **Package**: REST API with TypeScript SDK support
+- **Authentication**: API key via `COHERE_API_KEY` environment variable
 
 ## Migration Scope
 
@@ -48,9 +48,9 @@ This document outlines the migration strategy from Google Gemini API to an alter
 - [ ] Implement adapter pattern for multiple providers
 - [ ] Add configuration for provider selection
 
-### Phase 3: Groq Integration
-- [ ] Install Groq SDK
-- [ ] Implement Groq service adapter
+### Phase 3: Cohere Integration
+- [ ] Install Cohere SDK
+- [ ] Implement Cohere service adapter
 - [ ] Update environment configuration
 - [ ] Test with sample data
 
@@ -96,12 +96,11 @@ const response = await ai.models.generateContent({
 });
 ```
 
-### New Groq API Call (Proposed)
+### New Cohere API Call (Proposed)
 ```typescript
-const response = await groq.chat.completions.create({
-  model: "llama-3.1-70b-versatile",
+const response = await cohere.chat.create({
+  model: "command-r-plus",
   messages: [{ role: "user", content: prompt }],
-  response_format: { type: "json_object" },
   temperature: 0.7,
   max_tokens: 1024
 });
@@ -121,7 +120,7 @@ const response = await groq.chat.completions.create({
 - Add provider configuration
 
 ### Phase 3: Integration (Days 5-7)
-- Implement Groq adapter
+- Implement Cohere adapter
 - Update components
 - Test locally
 

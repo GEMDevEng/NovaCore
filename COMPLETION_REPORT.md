@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-All planning and documentation tasks for the NovaCore AI provider migration (Google Gemini → Groq API) have been successfully completed. The project is now ready to proceed with Phase 2 (API Abstraction Layer) implementation.
+All planning and documentation tasks for the NovaCore AI provider migration (Google Gemini → Cohere API) have been successfully completed. The project is now ready to proceed with Phase 2 (API Abstraction Layer) implementation.
 
 ## Deliverables Summary
 
@@ -76,7 +76,7 @@ All planning and documentation tasks for the NovaCore AI provider migration (Goo
 #### Updated Existing Files (1 file)
 10. **README.md** (240 lines - updated)
     - New project overview
-    - Groq API setup instructions
+    - Cohere API setup instructions
     - Vercel deployment guide
     - Updated troubleshooting
 
@@ -84,7 +84,7 @@ All planning and documentation tasks for the NovaCore AI provider migration (Goo
 
 ## Key Findings
 
-### Migration Target: Groq API (Llama 3)
+### Migration Target: Cohere API (Command R/Command A)
 
 **Rationale**:
 - ⚡ 3-4x faster inference (50-100ms vs 200-500ms)
@@ -120,7 +120,7 @@ services/
 ├── providers/
 │   ├── index.ts (factory)
 │   ├── geminiAdapter.ts (legacy)
-│   └── groqAdapter.ts (new)
+│   └── cohereAdapter.ts (new)
 ```
 
 **Benefits**:
@@ -147,7 +147,7 @@ services/
 
 ### Critical Path
 1. Phase 2: API Abstraction (foundation)
-2. Phase 3: Groq Integration (core feature)
+2. Phase 3: Cohere Integration (core feature)
 3. Phase 4: Testing (quality assurance)
 4. Phase 6: Deployment (release)
 
@@ -184,7 +184,7 @@ services/
 ### Immediate Actions
 1. ✅ Review all documentation
 2. ✅ Get stakeholder approval
-3. ⏳ Set up Groq API account
+3. ⏳ Set up Cohere API account
 4. ⏳ Begin Phase 2: API Abstraction Layer
 
 ### Phase 2 Tasks
@@ -222,7 +222,7 @@ services/
 ### Before Implementation
 1. ✅ Review all documentation (COMPLETE)
 2. ⏳ Get team approval
-3. ⏳ Set up Groq API account
+3. ⏳ Set up Cohere API account
 4. ⏳ Prepare testing environment
 
 ### During Implementation

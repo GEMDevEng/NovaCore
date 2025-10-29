@@ -1,7 +1,7 @@
-# NovaCore Migration Task List - Gemini to Groq
+# NovaCore Migration Task List - Gemini to Cohere
 
 ## Overview
-This document provides a prioritized, actionable task list for implementing the migration from Google Gemini to Groq API. Tasks are organized by phase and priority level.
+This document provides a prioritized, actionable task list for implementing the migration from Google Gemini to Cohere API. Tasks are organized by phase and priority level.
 
 ## Phase 1: Planning & Documentation (COMPLETE ✅)
 
@@ -11,7 +11,7 @@ This document provides a prioritized, actionable task list for implementing the 
 - [x] **1.4** Create API_COMPARISON.md
 - [x] **1.5** Create AFFECTED_COMPONENTS.md
 - [x] **1.6** Create DIRECTORY_STRUCTURE.md
-- [x] **1.7** Update README.md with Groq information
+- [x] **1.7** Update README.md with Cohere information
 - [x] **1.8** Identify all Gemini dependencies
 
 ## Phase 2: API Abstraction Layer (PENDING)
@@ -46,18 +46,18 @@ This document provides a prioritized, actionable task list for implementing the 
   - **Effort**: 1-2 hours
   - **Depends on**: 2.1
 
-## Phase 3: Groq Integration (PENDING)
+## Phase 3: Cohere Integration (PENDING)
 
 ### High Priority
-- [ ] **3.1** Install Groq SDK
-  - [ ] Run `npm install @groq/sdk`
+- [ ] **3.1** Install Cohere SDK
+  - [ ] Run `npm install cohere-ai`
   - [ ] Verify installation
   - [ ] Update package-lock.json
   - **Effort**: 30 minutes
   - **Depends on**: Phase 2 complete
 
-- [ ] **3.2** Create `services/providers/groqAdapter.ts` - Groq implementation
-  - [ ] Implement Groq API calls
+- [ ] **3.2** Create `services/providers/cohereAdapter.ts` - Cohere implementation
+  - [ ] Implement Cohere API calls
   - [ ] Handle response parsing
   - [ ] Implement error handling
   - [ ] Add request/response logging
@@ -66,7 +66,7 @@ This document provides a prioritized, actionable task list for implementing the 
 
 - [ ] **3.3** Update environment configuration
   - [ ] Update `.env.local` template
-  - [ ] Add `GROQ_API_KEY` support
+  - [ ] Add `COHERE_API_KEY` support
   - [ ] Update vite.config.ts
   - [ ] Document setup process
   - **Effort**: 1-2 hours
@@ -74,7 +74,7 @@ This document provides a prioritized, actionable task list for implementing the 
 
 ### Medium Priority
 - [ ] **3.4** Update `index.html` import map
-  - [ ] Replace Gemini import with Groq
+  - [ ] Replace Gemini import with Cohere
   - [ ] Verify CDN availability
   - [ ] Test import resolution
   - **Effort**: 30 minutes
@@ -90,8 +90,8 @@ This document provides a prioritized, actionable task list for implementing the 
 ## Phase 4: Testing & Validation (PENDING)
 
 ### High Priority
-- [ ] **4.1** Create unit tests for Groq adapter
-  - [ ] Create `services/providers/__tests__/groqAdapter.test.ts`
+- [ ] **4.1** Create unit tests for Cohere adapter
+  - [ ] Create `services/providers/__tests__/cohereAdapter.test.ts`
   - [ ] Test API call structure
   - [ ] Test response parsing
   - [ ] Test error handling
@@ -108,7 +108,7 @@ This document provides a prioritized, actionable task list for implementing the 
   - **Depends on**: 4.1
 
 - [ ] **4.3** Performance benchmarking
-  - [ ] Measure Groq latency
+  - [ ] Measure Cohere latency
   - [ ] Compare with Gemini (if available)
   - [ ] Document results
   - [ ] Identify optimization opportunities
@@ -216,7 +216,7 @@ This document provides a prioritized, actionable task list for implementing the 
 
 ### Critical Path (Must Complete)
 1. Phase 2: API Abstraction (foundation)
-2. Phase 3: Groq Integration (core feature)
+2. Phase 3: Cohere Integration (core feature)
 3. Phase 4: Testing (quality assurance)
 4. Phase 6: Deployment (release)
 

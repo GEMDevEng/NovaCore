@@ -21,7 +21,7 @@ NovaCore is built from first principles to eliminate operational friction and em
 ## Tech Stack
 
 - **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
-- **AI Provider**: Groq API (Llama 3) - migrated from Google Gemini
+- **AI Provider**: Cohere API (Command R/Command A) - migrated from Google Gemini
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS with Material Design 3
 - **Package Manager**: npm
@@ -30,7 +30,7 @@ NovaCore is built from first principles to eliminate operational friction and em
 
 - Node.js 18+
 - npm or yarn
-- Groq API key (free tier available at https://console.groq.com)
+- Cohere API key (free tier available at https://cohere.com)
 
 ## Installation & Setup
 
@@ -52,16 +52,16 @@ npm install
 Create a `.env.local` file in the root directory:
 
 ```bash
-# Groq API Configuration
-GROQ_API_KEY=your_groq_api_key_here
+# Cohere API Configuration
+COHERE_API_KEY=your_cohere_api_key_here
 
 # Optional: API URL for backend services
 VITE_API_URL=http://localhost:3000
 ```
 
-**Getting a Groq API Key**:
-1. Visit https://console.groq.com
-2. Sign up for a free account
+**Getting a Cohere API Key**:
+1. Visit https://cohere.com
+2. Sign up for a free account (no credit card required)
 3. Create an API key
 4. Copy the key to your `.env.local` file
 
@@ -98,7 +98,7 @@ Key directories:
 
 ## AI Provider Migration
 
-NovaCore has been migrated from Google Gemini to Groq API for improved performance and cost efficiency.
+NovaCore has been migrated from Google Gemini to Cohere API for improved model quality, unlimited free tier access, and better support for business intelligence tasks.
 
 **Migration Benefits**:
 - ⚡ 3-4x faster inference (50-100ms vs 200-500ms)
@@ -131,7 +131,7 @@ NovaCore is optimized for deployment on Vercel.
 
 2. **Configure Environment Variables**:
    - In Vercel dashboard, go to Settings → Environment Variables
-   - Add `GROQ_API_KEY` with your production API key
+   - Add `COHERE_API_KEY` with your production API key
    - Add `VITE_API_URL` with your production API URL
 
 3. **Deploy**:
@@ -146,7 +146,7 @@ NovaCore is optimized for deployment on Vercel.
 #### Environment Variables for Vercel
 
 ```
-GROQ_API_KEY=your_production_groq_key
+COHERE_API_KEY=your_production_cohere_key
 VITE_API_URL=https://your-domain.vercel.app
 ```
 
@@ -159,11 +159,11 @@ npm run preview
 
 ## Configuration
 
-### Groq API Configuration
+### Cohere API Configuration
 
-The app uses Groq's Llama 3 model for AI features. Configuration is handled in:
+The app uses Cohere's Command R/Command A models for AI features. Configuration is handled in:
 - `vite.config.ts` - Build-time environment setup
-- `services/providers/groqAdapter.ts` - Runtime API configuration
+- `services/providers/cohereAdapter.ts` - Runtime API configuration
 
 ### Theme Configuration
 
@@ -185,18 +185,18 @@ npm test -- --coverage
 
 - [DIRECTORY_STRUCTURE.md](./DIRECTORY_STRUCTURE.md) - Project organization
 - [docs/MIGRATION_PLAN.md](./docs/MIGRATION_PLAN.md) - AI provider migration details
-- [docs/API_COMPARISON.md](./docs/API_COMPARISON.md) - Gemini vs Groq comparison
+- [docs/API_COMPARISON.md](./docs/API_COMPARISON.md) - Gemini vs Cohere comparison
 - [docs/AFFECTED_COMPONENTS.md](./docs/AFFECTED_COMPONENTS.md) - Components affected by migration
 
 ## Troubleshooting
 
-### "GROQ_API_KEY is not defined"
+### "COHERE_API_KEY is not defined"
 - Ensure `.env.local` file exists in the root directory
 - Verify the API key is correctly set
 - Restart the development server after updating `.env.local`
 
 ### "Failed to get insights from AI"
-- Check that your Groq API key is valid
+- Check that your Cohere API key is valid
 - Verify you have remaining API quota
 - Check network connectivity
 - Review browser console for detailed error messages
@@ -237,4 +237,4 @@ For issues, questions, or suggestions:
 
 ## Acknowledgments
 
-NovaCore is built with modern web technologies and leverages the power of AI through Groq's inference engine and Llama 3 models.
+NovaCore is built with modern web technologies and leverages the power of AI through Cohere's API and Command R/Command A models.

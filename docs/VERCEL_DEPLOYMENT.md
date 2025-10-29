@@ -8,7 +8,7 @@ This guide provides step-by-step instructions for deploying NovaCore to Vercel, 
 
 - GitHub account with NovaCore repository
 - Vercel account (free tier available at https://vercel.com)
-- Groq API key (from https://console.groq.com)
+- Cohere API key (from https://cohere.com)
 
 ## Step 1: Prepare Your Repository
 
@@ -39,7 +39,7 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY)
+        'process.env.COHERE_API_KEY': JSON.stringify(env.COHERE_API_KEY)
       },
       resolve: {
         alias: {
@@ -93,7 +93,7 @@ Before deploying, add environment variables:
 2. Add the following variables:
 
 ```
-GROQ_API_KEY = your_production_groq_key_here
+COHERE_API_KEY = your_production_cohere_key_here
 VITE_API_URL = https://your-domain.vercel.app
 ```
 
@@ -225,8 +225,8 @@ To update environment variables after deployment:
 ### Issue: API Calls Fail
 
 **Solution**:
-1. Verify `GROQ_API_KEY` is set correctly
-2. Check Groq API quota
+1. Verify `COHERE_API_KEY` is set correctly
+2. Check Cohere API quota
 3. Verify API endpoint is correct
 4. Check CORS settings if calling external APIs
 
@@ -300,7 +300,7 @@ git push origin main
 
 - [Vercel Documentation](https://vercel.com/docs)
 - [Vite Deployment Guide](https://vitejs.dev/guide/static-deploy.html#vercel)
-- [Groq API Documentation](https://console.groq.com/docs)
+- [Cohere API Documentation](https://docs.cohere.com)
 - [NovaCore README](../README.md)
 
 ## Support

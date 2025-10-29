@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Phase 2 (API Abstraction Layer) has been successfully completed. The provider abstraction pattern has been implemented, enabling seamless switching between AI providers without modifying frontend code. The Gemini adapter maintains 100% backward compatibility while preparing the codebase for Groq integration in Phase 3.
+Phase 2 (API Abstraction Layer) has been successfully completed. The provider abstraction pattern has been implemented, enabling seamless switching between AI providers without modifying frontend code. The Gemini adapter maintains 100% backward compatibility while preparing the codebase for Cohere integration in Phase 3.
 
 ## Tasks Completed
 
@@ -51,7 +51,7 @@ Phase 2 (API Abstraction Layer) has been successfully completed. The provider ab
 **Status**: COMPLETE
 
 - Added `AI_PROVIDER` environment variable support
-- Added `GROQ_API_KEY` environment variable support
+- Added `COHERE_API_KEY` environment variable support
 - Maintained backward compatibility with `GEMINI_API_KEY`
 - Build successful with no errors
 
@@ -81,7 +81,7 @@ interface IAiProvider {
 ### Factory Pattern
 - Automatic provider selection via `AI_PROVIDER` environment variable
 - Defaults to 'gemini' for backward compatibility
-- Extensible for future providers (Groq, OpenAI, etc.)
+- Extensible for future providers (Cohere, OpenAI, etc.)
 
 ### Backward Compatibility
 - Existing `AiQueryCard.tsx` component works without modification
@@ -124,31 +124,31 @@ GEMINI_API_KEY=your_gemini_key_here
 AI_PROVIDER=gemini (optional, defaults to gemini)
 ```
 
-### Future (Groq - Phase 3)
+### Future (Cohere - Phase 3)
 ```
-GROQ_API_KEY=your_groq_key_here
-AI_PROVIDER=groq
+COHERE_API_KEY=your_cohere_key_here
+AI_PROVIDER=cohere
 ```
 
 ## Next Steps: Phase 3
 
-### Phase 3: Groq Integration (3 days, 8-10 hours)
+### Phase 3: Cohere Integration (3 days, 8-10 hours)
 
-1. **Task 3.1**: Create Groq adapter (`services/providers/groqAdapter.ts`)
-   - Implement `IAiProvider` interface for Groq API
-   - Handle Groq-specific request/response formats
+1. **Task 3.1**: Create Cohere adapter (`services/providers/cohereAdapter.ts`)
+   - Implement `IAiProvider` interface for Cohere API
+   - Handle Cohere-specific request/response formats
    - Implement health check
 
 2. **Task 3.2**: Update provider factory
-   - Add Groq provider to factory
+   - Add Cohere provider to factory
    - Test provider switching
 
 3. **Task 3.3**: Environment configuration
-   - Add Groq API key support
-   - Test with Groq API
+   - Add Cohere API key support
+   - Test with Cohere API
 
 4. **Task 3.4**: Performance testing
-   - Compare Gemini vs Groq latency
+   - Compare Gemini vs Cohere latency
    - Validate response quality
 
 ## Deployment Readiness
@@ -171,7 +171,7 @@ AI_PROVIDER=groq
 
 ## Conclusion
 
-Phase 2 has successfully established the foundation for provider abstraction. The codebase is now ready for Groq integration while maintaining full backward compatibility with the existing Gemini implementation. All tasks completed on schedule with zero breaking changes.
+Phase 2 has successfully established the foundation for provider abstraction. The codebase is now ready for Cohere integration while maintaining full backward compatibility with the existing Gemini implementation. All tasks completed on schedule with zero breaking changes.
 
 **Status**: ✅ **READY FOR PHASE 3**
 

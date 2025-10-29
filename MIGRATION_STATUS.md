@@ -14,7 +14,7 @@
 |-------|------|--------|----------|--------|---------|
 | 1 | Planning & Documentation | ✅ COMPLETE | 2 days | 8 hrs | 1 |
 | 2 | API Abstraction Layer | ✅ COMPLETE | 2 days | 7-9 hrs | 2 |
-| 3 | Groq Integration | ⏳ PENDING | 3 days | 8-10 hrs | - |
+| 3 | Cohere Integration | ⏳ PENDING | 3 days | 8-10 hrs | - |
 | 4 | Testing & Validation | ⏳ PENDING | 2 days | 10-13 hrs | - |
 | 5 | Cleanup & Optimization | ⏳ PENDING | 2 days | 4-6 hrs | - |
 | 6 | Deployment | ⏳ PENDING | 2 days | 4-6 hrs | - |
@@ -31,17 +31,17 @@
 - ✅ MIGRATION_PLAN.md - Strategy and scope
 - ✅ IMPLEMENTATION_ROADMAP.md - 6 phases with tasks
 - ✅ MIGRATION_TASK_LIST.md - 30 actionable tasks
-- ✅ API_COMPARISON.md - Gemini vs Groq comparison
+- ✅ API_COMPARISON.md - Gemini vs Cohere comparison
 - ✅ AFFECTED_COMPONENTS.md - Files requiring changes
 - ✅ MIGRATION_SUMMARY.md - Executive overview
 - ✅ VERCEL_DEPLOYMENT.md - Deployment guide
 - ✅ docs/README.md - Documentation index
 - ✅ DIRECTORY_STRUCTURE.md - Project organization
-- ✅ README.md - Updated with Groq info
+- ✅ README.md - Updated with Cohere info
 
 ### Key Decisions
-- **Migration Target**: Groq API (Llama 3)
-- **Benefits**: 3-4x faster, 50% cheaper, unlimited free tier
+- **Migration Target**: Cohere API (Command R/Command A)
+- **Benefits**: Unlimited free tier, no credit card, excellent for business intelligence
 - **Architecture**: Provider abstraction pattern
 - **Timeline**: 13 days, 41-51 hours total effort
 
@@ -76,7 +76,7 @@
 ### Task 2.4: Build Configuration ✅
 **File**: `vite.config.ts`
 - Added `AI_PROVIDER` environment variable
-- Added `GROQ_API_KEY` environment variable
+- Added `COHERE_API_KEY` environment variable
 - Maintained backward compatibility
 - Build successful (148ms, 0 errors)
 
@@ -108,19 +108,19 @@ services/
 
 ---
 
-## ⏳ Phase 3: Groq Integration (PENDING)
+## ⏳ Phase 3: Cohere Integration (PENDING)
 
-**Estimated Duration**: 3 days, 8-10 hours  
+**Estimated Duration**: 3 days, 8-10 hours
 **Status**: Ready to start
 
 ### Tasks to Complete
-- [ ] Task 3.1: Create Groq adapter
+- [ ] Task 3.1: Create Cohere adapter
 - [ ] Task 3.2: Update provider factory
 - [ ] Task 3.3: Environment configuration
 - [ ] Task 3.4: Performance testing
 
 ### Deliverables
-- Groq adapter implementation
+- Cohere adapter implementation
 - Provider switching capability
 - Performance benchmarks
 - Integration testing
@@ -200,14 +200,14 @@ services/
    - Verify provider abstraction works correctly
 
 2. **Prepare for Phase 3**
-   - Set up Groq API account (https://console.groq.com)
-   - Get Groq API key
-   - Review Groq API documentation
+   - Set up Cohere API account (https://cohere.com)
+   - Get Cohere API key
+   - Review Cohere API documentation
 
-3. **Begin Phase 3: Groq Integration**
-   - Create Groq adapter
+3. **Begin Phase 3: Cohere Integration**
+   - Create Cohere adapter
    - Implement provider switching
-   - Test with Groq API
+   - Test with Cohere API
 
 ---
 
@@ -237,7 +237,7 @@ services/
 - ✅ Provider abstraction architecture
 - ✅ Gemini adapter with backward compatibility
 - ✅ Build verified and working
-- ✅ Ready for Groq integration
+- ✅ Ready for Cohere integration
 
 **Next Phase**: Phase 3 - Groq Integration (3 days, 8-10 hours)
 

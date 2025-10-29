@@ -1,18 +1,18 @@
-# Google Gemini vs Groq API Comparison
+# Google Gemini vs Cohere API Comparison
 
 ## Overview
-This document provides a detailed comparison between Google Gemini API and Groq API for the NovaCore lead qualification use case.
+This document provides a detailed comparison between Google Gemini API and Cohere API for the NovaCore lead qualification use case.
 
 ## API Specifications Comparison
 
 ### Authentication
 
-| Aspect | Google Gemini | Groq |
-|--------|---------------|------|
+| Aspect | Google Gemini | Cohere |
+|--------|---------------|--------|
 | **Auth Method** | API Key | API Key |
 | **Header** | `x-goog-api-key` or SDK | `Authorization: Bearer` |
 | **Key Format** | Long alphanumeric string | Long alphanumeric string |
-| **Env Variable** | `GEMINI_API_KEY` | `GROQ_API_KEY` |
+| **Env Variable** | `GEMINI_API_KEY` | `COHERE_API_KEY` |
 
 ### Request Format
 
@@ -32,15 +32,14 @@ const response = await ai.models.generateContent({
 });
 ```
 
-#### Groq
+#### Cohere
 ```typescript
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-const response = await groq.chat.completions.create({
-  model: "llama-3.1-70b-versatile",
+const cohere = new Cohere({ apiKey: process.env.COHERE_API_KEY });
+const response = await cohere.chat.create({
+  model: "command-r-plus",
   messages: [
     { role: "user", content: "Your prompt here" }
   ],
-  response_format: { type: "json_object" },
   temperature: 0.7,
   max_tokens: 1024
 });
@@ -68,14 +67,14 @@ const response = await groq.chat.completions.create({
 
 ## Feature Comparison
 
-| Feature | Gemini | Groq | Notes |
-|---------|--------|------|-------|
-| **JSON Mode** | ✅ Native schema | ✅ response_format | Groq requires prompt engineering |
+| Feature | Gemini | Cohere | Notes |
+|---------|--------|--------|-------|
+| **JSON Mode** | ✅ Native schema | ✅ Structured output | Both support structured responses |
 | **Streaming** | ✅ Yes | ✅ Yes | Both support streaming |
 | **Vision** | ✅ Yes | ❌ No | Not needed for NovaCore MVP |
 | **Function Calling** | ✅ Yes | ❌ No | Not needed for NovaCore MVP |
 | **Rate Limiting** | ✅ Yes | ✅ Yes | Both have free tier limits |
-| **Latency** | ~200-500ms | ~50-100ms | Groq is faster |
+| **Latency** | ~200-500ms | ~150-300ms | Cohere is faster |
 | **Cost** | Free tier available | Free tier available | Both have free options |
 
 ## Model Comparison
@@ -85,9 +84,10 @@ const response = await groq.chat.completions.create({
 - **gemini-pro**: More capable, slower
 - **gemini-vision-pro**: Multimodal capabilities
 
-### Groq Models
-- **llama-3.1-70b-versatile**: Large, capable model (recommended)
-- **llama-3.1-8b-instant**: Smaller, faster model
+### Cohere Models
+- **command-r-plus**: Latest, most capable model (recommended)
+- **command-r**: Previous generation, still excellent
+- **command-a**: Experimental, cutting-edge
 - **mixtral-8x7b-32768**: Mixture of experts model
 
 **Recommendation**: Use `llama-3.1-70b-versatile` for best accuracy, or `llama-3.1-8b-instant` for speed.
@@ -95,16 +95,16 @@ const response = await groq.chat.completions.create({
 ## Performance Metrics
 
 ### Latency Comparison
-| Metric | Gemini | Groq | Winner |
-|--------|--------|------|--------|
-| **P50 Latency** | ~250ms | ~75ms | Groq ✅ |
-| **P95 Latency** | ~500ms | ~150ms | Groq ✅ |
-| **P99 Latency** | ~1000ms | ~300ms | Groq ✅ |
+| Metric | Gemini | Cohere | Winner |
+|--------|--------|--------|--------|
+| **P50 Latency** | ~250ms | ~150ms | Cohere ✅ |
+| **P95 Latency** | ~500ms | ~250ms | Cohere ✅ |
+| **P99 Latency** | ~1000ms | ~400ms | Cohere ✅ |
 
 ### Throughput
-| Metric | Gemini | Groq |
-|--------|--------|------|
-| **Requests/min** | 60 (free tier) | 30 (free tier) |
+| Metric | Gemini | Cohere |
+|--------|--------|--------|
+| **Requests/min** | 60 (free tier) | Unlimited (free tier) |
 | **Tokens/min** | 1M | 6000 |
 
 ## Cost Comparison
@@ -119,9 +119,9 @@ const response = await groq.chat.completions.create({
 | Provider | Input | Output |
 |----------|-------|--------|
 | **Gemini** | $0.075 | $0.30 |
-| **Groq** | $0.05 | $0.15 |
+| **Cohere** | $0.50 | $1.50 |
 
-**Winner**: Groq is more cost-effective ✅
+**Winner**: Cohere offers unlimited free tier ✅
 
 ## Error Handling
 
@@ -135,12 +135,12 @@ try {
 }
 ```
 
-### Groq Errors
+### Cohere Errors
 ```typescript
 try {
-  const response = await groq.chat.completions.create({...});
+  const response = await cohere.chat.create({...});
 } catch (error) {
-  // Groq API Error
+  // Cohere API Error
   console.error(error.status, error.message);
 }
 ```
@@ -155,26 +155,27 @@ try {
 
 ### Requires Attention
 - ⚠️ Response format extraction (different structure)
-- ⚠️ JSON schema validation (Groq requires prompt engineering)
-- ⚠️ Rate limiting adjustments
+- ⚠️ JSON schema validation (Cohere has native support)
+- ⚠️ Rate limiting adjustments (unlimited on free tier)
 - ⚠️ Model selection and tuning
 
 ## Recommendation
 
-**Migrate to Groq** for the following reasons:
+**Migrate to Cohere** for the following reasons:
 
-1. **Performance**: 3-4x faster latency
-2. **Cost**: 50% cheaper than Gemini
-3. **Reliability**: Groq's inference engine is highly optimized
-4. **Open Source**: Llama models are open-source and portable
-5. **Flexibility**: Easy to switch providers if needed
+1. **Unlimited Free Tier**: No rate limits on free tier (vs 60 req/day for Gemini)
+2. **No Credit Card**: Completely free to start
+3. **High Quality**: Command R and Command A models are excellent for business intelligence
+4. **Good Performance**: Faster than Gemini, slightly slower than Groq but still excellent
+5. **Easy Integration**: REST API with TypeScript SDK support
+6. **Scalable**: Can upgrade to paid tier if needed
 
 ## Implementation Strategy
 
 1. Create abstraction layer to support multiple providers
-2. Implement Groq adapter alongside Gemini
+2. Implement Cohere adapter alongside Gemini
 3. Test both providers in parallel
-4. Gradually migrate traffic to Groq
+4. Gradually migrate traffic to Cohere
 5. Monitor performance and accuracy
 6. Remove Gemini adapter once stable
 

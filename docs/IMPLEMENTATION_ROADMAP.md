@@ -1,7 +1,7 @@
 # NovaCore AI Provider Migration - Implementation Roadmap
 
 ## Overview
-This roadmap provides a detailed, step-by-step implementation plan for migrating from Google Gemini to Groq API. It includes specific tasks, dependencies, and deliverables for each phase.
+This roadmap provides a detailed, step-by-step implementation plan for migrating from Google Gemini to Cohere API. It includes specific tasks, dependencies, and deliverables for each phase.
 
 ## Phase 1: Planning & Documentation (Days 1-2)
 
@@ -49,7 +49,7 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 - **Objective**: Create adapters for different providers
 - **Deliverables**:
   - `services/providers/geminiAdapter.ts` - Current implementation
-  - `services/providers/groqAdapter.ts` - New implementation
+  - `services/providers/cohereAdapter.ts` - New implementation
   - `services/providers/index.ts` - Provider factory
 - **Dependencies**: Task 2.1
 - **Status**: PENDING
@@ -63,10 +63,10 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 - **Dependencies**: Task 2.2
 - **Status**: PENDING
 
-## Phase 3: Groq Integration (Days 5-7)
+## Phase 3: Cohere Integration (Days 5-7)
 
-### Task 3.1: Install Groq SDK
-- **Objective**: Add Groq package to project
+### Task 3.1: Install Cohere SDK
+- **Objective**: Add Cohere package to project
 - **Deliverables**:
   - Updated `package.json`
   - Installed dependencies
@@ -74,18 +74,18 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 - **Dependencies**: Phase 2 complete
 - **Status**: PENDING
 
-### Task 3.2: Implement Groq Adapter
-- **Objective**: Create Groq service implementation
+### Task 3.2: Implement Cohere Adapter
+- **Objective**: Create Cohere service implementation
 - **Deliverables**:
-  - `services/providers/groqAdapter.ts`
-  - Groq API integration
+  - `services/providers/cohereAdapter.ts`
+  - Cohere API integration
   - Response transformation logic
   - Error handling
 - **Dependencies**: Task 3.1
 - **Status**: PENDING
 
 ### Task 3.3: Update Environment Configuration
-- **Objective**: Add Groq API key support
+- **Objective**: Add Cohere API key support
 - **Deliverables**:
   - Updated `.env.local` template
   - Updated `vite.config.ts`
@@ -105,9 +105,9 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 ## Phase 4: Testing & Validation (Days 8-9)
 
 ### Task 4.1: Unit Tests
-- **Objective**: Test new Groq adapter
+- **Objective**: Test new Cohere adapter
 - **Deliverables**:
-  - `services/providers/__tests__/groqAdapter.test.ts`
+  - `services/providers/__tests__/cohereAdapter.test.ts`
   - >90% code coverage
   - All tests passing
 - **Dependencies**: Phase 3 complete
@@ -123,7 +123,7 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 - **Status**: PENDING
 
 ### Task 4.3: Performance Benchmarking
-- **Objective**: Compare Gemini vs Groq performance
+- **Objective**: Compare Gemini vs Cohere performance
 - **Deliverables**:
   - Benchmark report
   - Latency measurements
@@ -204,13 +204,13 @@ This roadmap provides a detailed, step-by-step implementation plan for migrating
 
 - [ ] Day 2: Documentation complete
 - [ ] Day 4: Abstraction layer complete
-- [ ] Day 7: Groq integration complete
+- [ ] Day 7: Cohere integration complete
 - [ ] Day 9: All tests passing
 - [ ] Day 11: Production deployment complete
 
 ## Success Metrics
 
-- [ ] 100% of Gemini API calls migrated to Groq
+- [ ] 100% of Gemini API calls migrated to Cohere
 - [ ] >90% test coverage
 - [ ] <500ms API response time
 - [ ] >90% AI accuracy

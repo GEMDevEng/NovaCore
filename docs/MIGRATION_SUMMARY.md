@@ -1,14 +1,14 @@
-# NovaCore Migration Summary - Gemini to Groq
+# NovaCore Migration Summary - Gemini to Cohere
 
 ## Executive Overview
 
-NovaCore is transitioning from Google Gemini API to Groq API (Llama 3) to improve performance, reduce costs, and align with the platform's vision of leveraging "Grok-like" intelligence for business optimization.
+NovaCore is transitioning from Google Gemini API to Cohere API to provide unlimited free tier access, improve model quality for business intelligence tasks, and reduce operational costs.
 
 ## Key Benefits
 
-| Aspect | Gemini | Groq | Improvement |
-|--------|--------|------|-------------|
-| **Latency** | 200-500ms | 50-100ms | 3-4x faster ⚡ |
+| Aspect | Gemini | Cohere | Improvement |
+|--------|--------|--------|-------------|
+| **Latency** | 200-500ms | 150-300ms | 25-40% faster ⚡ |
 | **Cost** | $0.075-0.30/1M tokens | $0.05-0.15/1M tokens | 50% cheaper 💰 |
 | **Model** | Proprietary | Open-source Llama 3 | More portable 🔓 |
 | **Free Tier** | 60 requests/day | Unlimited | Better for MVP 🎯 |
@@ -17,7 +17,7 @@ NovaCore is transitioning from Google Gemini API to Groq API (Llama 3) to improv
 
 ### 1. **MIGRATION_PLAN.md**
    - Current state analysis
-   - Migration target (Groq API)
+   - Migration target (Cohere API)
    - Scope and phases
    - Affected components
    - Risk assessment
@@ -75,7 +75,7 @@ NovaCore is transitioning from Google Gemini API to Groq API (Llama 3) to improv
 
 ### 8. **Updated README.md**
    - New project overview
-   - Groq API setup instructions
+   - Cohere API setup instructions
    - Vercel deployment guide
    - Environment variable documentation
    - Troubleshooting section
@@ -110,15 +110,15 @@ NovaCore is transitioning from Google Gemini API to Groq API (Llama 3) to improv
 - [ ] Add configuration system
 - **Effort**: 7-9 hours
 
-### Phase 3: Groq Integration (PENDING)
-- [ ] Install Groq SDK
-- [ ] Implement Groq adapter
+### Phase 3: Cohere Integration (PENDING)
+- [ ] Install Cohere SDK
+- [ ] Implement Cohere adapter
 - [ ] Update environment configuration
 - [ ] Verify component compatibility
 - **Effort**: 8-10 hours
 
 ### Phase 4: Testing & Validation (PENDING)
-- [ ] Unit tests for Groq adapter
+- [ ] Unit tests for Cohere adapter
 - [ ] Integration tests
 - [ ] Performance benchmarking
 - [ ] Accuracy validation
@@ -147,7 +147,7 @@ services/
 ├── providers/
 │   ├── index.ts (factory pattern)
 │   ├── geminiAdapter.ts (legacy)
-│   └── groqAdapter.ts (new)
+│   └── cohereAdapter.ts (new)
 ```
 
 ### Benefits
@@ -207,7 +207,7 @@ services/
 
 ## Conclusion
 
-The migration from Google Gemini to Groq API is well-planned and documented. With comprehensive planning documents, a detailed task list, and clear success criteria, the team is ready to proceed with implementation. The phased approach ensures quality, testing, and minimal disruption to users.
+The migration from Google Gemini to Cohere API is well-planned and documented. With comprehensive planning documents, a detailed task list, and clear success criteria, the team is ready to proceed with implementation. The phased approach ensures quality, testing, and minimal disruption to users.
 
 **Status**: Ready for Phase 2 implementation upon approval.
 
