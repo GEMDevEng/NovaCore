@@ -5,6 +5,8 @@ import { ApiError } from '../middleware/errorHandler.js';
 
 const router = express.Router();
 
+// Force Vercel redeploy - v1.0.3
+
 /**
  * In-memory storage for leads (replace with database in production)
  */
