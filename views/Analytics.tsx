@@ -9,7 +9,7 @@ interface AnalyticsData {
   revenueGrowth: number;
 }
 
-const API_BASE_URL = 'https://backend-e92hpmh4t-gem-devs-projects.vercel.app/api/v1';
+const API_BASE_URL = 'https://backend-9zbakelgy-gem-devs-projects.vercel.app/api/v1';
 
 const Analytics: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
