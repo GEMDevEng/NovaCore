@@ -13,11 +13,22 @@ const reportsStore = new Map();
 // Initialize with sample reports
 const initializeReports = () => {
   const sampleReports = [
-    { id: uuidv4(), name: 'Q3 Performance', source: 'web', leads: 120, converted: 35, revenue: 157500, date: '2025-09-30' },
-    { id: uuidv4(), name: 'Email Campaign', source: 'email', leads: 85, converted: 18, revenue: 81000, date: '2025-09-15' },
-    { id: uuidv4(), name: 'Phone Outreach', source: 'phone', leads: 45, converted: 12, revenue: 54000, date: '2025-09-10' },
-    { id: uuidv4(), name: 'Referral Program', source: 'referral', leads: 30, converted: 10, revenue: 45000, date: '2025-09-05' },
-    { id: uuidv4(), name: 'Q2 Summary', source: 'web', leads: 110, converted: 32, revenue: 144000, date: '2025-06-30' },
+    { id: uuidv4(), name: 'Q3 Performance Summary', source: 'web', leads: 215, converted: 70, revenue: 3640000, date: '2025-09-30', status: 'completed' },
+    { id: uuidv4(), name: 'September Email Campaign', source: 'email', leads: 146, converted: 38, revenue: 1995000, date: '2025-09-28', status: 'completed' },
+    { id: uuidv4(), name: 'Social Media Outreach', source: 'web', leads: 73, converted: 18, revenue: 945000, date: '2025-09-25', status: 'completed' },
+    { id: uuidv4(), name: 'Referral Program Results', source: 'referral', leads: 36, converted: 12, revenue: 630000, date: '2025-09-20', status: 'completed' },
+    { id: uuidv4(), name: 'Phone Outreach Campaign', source: 'phone', leads: 17, converted: 5, revenue: 262500, date: '2025-09-18', status: 'completed' },
+    { id: uuidv4(), name: 'August Performance Report', source: 'web', leads: 195, converted: 58, revenue: 3045000, date: '2025-08-31', status: 'completed' },
+    { id: uuidv4(), name: 'August Email Blast', source: 'email', leads: 128, converted: 32, revenue: 1680000, date: '2025-08-28', status: 'completed' },
+    { id: uuidv4(), name: 'LinkedIn Campaign', source: 'web', leads: 89, converted: 22, revenue: 1155000, date: '2025-08-25', status: 'completed' },
+    { id: uuidv4(), name: 'Partner Referrals', source: 'referral', leads: 42, converted: 14, revenue: 735000, date: '2025-08-20', status: 'completed' },
+    { id: uuidv4(), name: 'July Monthly Summary', source: 'web', leads: 180, converted: 52, revenue: 2730000, date: '2025-07-31', status: 'completed' },
+    { id: uuidv4(), name: 'July Email Marketing', source: 'email', leads: 112, converted: 28, revenue: 1470000, date: '2025-07-28', status: 'completed' },
+    { id: uuidv4(), name: 'Trade Show Leads', source: 'referral', leads: 54, converted: 18, revenue: 945000, date: '2025-07-22', status: 'completed' },
+    { id: uuidv4(), name: 'Q2 Final Report', source: 'web', leads: 165, converted: 48, revenue: 2520000, date: '2025-06-30', status: 'completed' },
+    { id: uuidv4(), name: 'June Email Campaign', source: 'email', leads: 98, converted: 24, revenue: 1260000, date: '2025-06-28', status: 'completed' },
+    { id: uuidv4(), name: 'Webinar Attendees', source: 'web', leads: 76, converted: 19, revenue: 997500, date: '2025-06-20', status: 'completed' },
+    { id: uuidv4(), name: 'May Performance Metrics', source: 'web', leads: 150, converted: 42, revenue: 2205000, date: '2025-05-31', status: 'completed' },
   ];
   sampleReports.forEach(report => reportsStore.set(report.id, report));
 };

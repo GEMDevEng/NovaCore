@@ -8,10 +8,14 @@ const router = express.Router();
  */
 const analyticsStore = {
   conversionRate: 32.5,
-  totalLeads: 245,
-  convertedLeads: 79,
-  averageDealSize: 45000,
-  revenueGrowth: 18.5,
+  totalLeads: 487,
+  convertedLeads: 158,
+  averageDealSize: 52500,
+  revenueGrowth: 28.3,
+  monthlyRevenue: 8312500,
+  quarterlyRevenue: 24937500,
+  averageLeadValue: 10750,
+  topSource: 'Website',
   lastUpdated: new Date().toISOString(),
 };
 
@@ -40,12 +44,12 @@ router.get('/summary', (req, res) => {
 router.get('/conversion-trend', (req, res) => {
   try {
     const conversionTrendData = [
-      { month: 'Jan', rate: 22 },
-      { month: 'Feb', rate: 25 },
-      { month: 'Mar', rate: 28 },
-      { month: 'Apr', rate: 30 },
-      { month: 'May', rate: 31 },
-      { month: 'Jun', rate: 32.5 },
+      { month: 'Jan', rate: 22, leads: 320, converted: 70 },
+      { month: 'Feb', rate: 25, leads: 340, converted: 85 },
+      { month: 'Mar', rate: 28, leads: 360, converted: 101 },
+      { month: 'Apr', rate: 30, leads: 380, converted: 114 },
+      { month: 'May', rate: 31, leads: 410, converted: 127 },
+      { month: 'Jun', rate: 32.5, leads: 487, converted: 158 },
     ];
 
     res.status(200).json({
@@ -67,12 +71,12 @@ router.get('/conversion-trend', (req, res) => {
 router.get('/revenue-trend', (req, res) => {
   try {
     const revenueTrendData = [
-      { month: 'Jan', revenue: 45000 },
-      { month: 'Feb', revenue: 52000 },
-      { month: 'Mar', revenue: 58000 },
-      { month: 'Apr', revenue: 65000 },
-      { month: 'May', revenue: 72000 },
-      { month: 'Jun', revenue: 85000 },
+      { month: 'Jan', revenue: 3640000, deals: 70 },
+      { month: 'Feb', revenue: 4420000, deals: 85 },
+      { month: 'Mar', revenue: 5292000, deals: 101 },
+      { month: 'Apr', revenue: 5985000, deals: 114 },
+      { month: 'May', revenue: 6682500, deals: 127 },
+      { month: 'Jun', revenue: 8312500, deals: 158 },
     ];
 
     res.status(200).json({
@@ -94,10 +98,11 @@ router.get('/revenue-trend', (req, res) => {
 router.get('/lead-sources', (req, res) => {
   try {
     const leadSourceData = [
-      { name: 'Web', value: 45 },
-      { name: 'Email', value: 30 },
-      { name: 'Phone', value: 15 },
-      { name: 'Referral', value: 10 },
+      { name: 'Website', value: 215, percentage: 44.1, revenue: 3665625 },
+      { name: 'Email Campaign', value: 146, percentage: 29.9, revenue: 2481750 },
+      { name: 'Social Media', value: 73, percentage: 15.0, revenue: 1243875 },
+      { name: 'Referral', value: 36, percentage: 7.4, revenue: 612500 },
+      { name: 'Phone', value: 17, percentage: 3.5, revenue: 289375 },
     ];
 
     res.status(200).json({
