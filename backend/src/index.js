@@ -16,6 +16,8 @@ import healthRoutes from './routes/health.js';
 import analyticsRoutes from './routes/analytics.js';
 import reportsRoutes from './routes/reports.js';
 import calendarRoutes from './routes/calendar.js';
+import paymentsRoutes from './routes/payments.js';
+import authRoutes from './routes/auth.js';
 
 // Import middleware
 import { errorHandler, requestLogger } from './middleware/errorHandler.js';
@@ -70,6 +72,8 @@ app.use('/api/v1/leads', leadsRoutes);
 app.use('/api/v1/analytics', analyticsRoutes);
 app.use('/api/v1/reports', reportsRoutes);
 app.use('/api/v1/calendar', calendarRoutes);
+app.use('/api/v1/payments', paymentsRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -86,6 +90,8 @@ app.get('/', (req, res) => {
       analytics: '/api/v1/analytics',
       reports: '/api/v1/reports',
       calendar: '/api/v1/calendar',
+      payments: '/api/v1/payments',
+      auth: '/api/v1/auth',
     },
   });
 });
